@@ -1,10 +1,16 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1780725747
+::res://::1780977191
 icon.svg::CompressedTexture2D::828129016158658205::1780623639::1780623647::1::::<><><>0<>0<>b858c2ffa791bd8b62bd5191e12bb741<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://characters/::1780623780
-::res://core/::1780628870
-Utilities.cs::CSharpScript::5280571270899199208::1780632893::0::1::::<><><>0<>0<><>::
-::res://dialogue/::1780654726
-en_US.json::JSON::-1::1780654726::0::1::::<><><>0<>0<><>::
-::res://scenes/::1780623784
-::res://ui/::1780623794
+::res://core/::1780975938
+Calliope.cs::CSharpScript::4494180453561816827::1780975938::0::1::::<><><>0<>0<><>::
+data.lua::TextFile::-1::1780807692::0::1::::<><><>0<>0<><>::
+Utilities.cs::CSharpScript::5280571270899199208::1780975559::0::1::::<><><>0<>0<><>::
+::res://dialogue/::1780727095
+::res://scenes/::1780975934
+Nightlife.cs::CSharpScript::9217905713059530047::1780975934::0::1::::<>Control<><>0<>0<><>::
+ThunderstormScene.tscn::PackedScene::456146966500169353::1780827587::0::1::::<><><>0<>0<><>::uid://d3ro56e30emjd::::res://ui/VioletDoor.png<>uid://d4lhtb0werqbv::::res://scenes/Nightlife.cs<>uid://c1mbtm2oe8owc::::res://ui/2amTonySkeor.png
+::res://ui/::1780809869
+2amTonySkeor.png::CompressedTexture2D::6622619154733397102::1780761234::1780761236::1::::<><><>0<>0<>c9e9171f12ee6a2ef689e3decb80bf6d<>res://.godot/imported/2amTonySkeor.png-ad898a8d42b4eff7aca2405a09251b63.ctex::
+Elena's Bedroom - Ryan James.jpg::CompressedTexture2D::5265236052943112044::1780809869::1780809869::1::::<><><>0<>0<>1ddbd923f794acd5767da6512838c2e5<>res://.godot/imported/Elena's Bedroom - Ryan James.jpg-c8d79b06da00f97143ca1cb497f5d295.ctex::
+VioletDoor.png::CompressedTexture2D::9160549342187947285::1563508412::1780755922::1::::<><><>0<>0<>a9e58bd2f66fb07b9650765bb4f52ce3<>res://.godot/imported/VioletDoor.png-fbf1c37503ccb1cdc19078509f0a8af7.ctex::

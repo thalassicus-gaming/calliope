@@ -1,3 +1,6 @@
+// Utilities.cs
+// Document Version 0.2.0
+
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -9,7 +12,12 @@ using System.IO;
 namespace Calliope {
 
 public static class Globals {
-	public static Random random = new Random();
+	public static Random simulationRandom   = new Random();
+	public static Random presentationRandom = new Random();
+
+	public static void SeedSimulation(int seed) {
+		simulationRandom = new Random(seed);
+	}
   public static Logger log = new Logger(Logger.TRACE);
 	public static double m2ft = 0.0328;
 	public static double kg2lbs = 2.2;
@@ -60,18 +68,17 @@ public static class Tools {
 	public static double GetPolarDistance(double r1, double r2, double t1, double t2){
 		return Math.Sqrt(r1*r1 + r2*r2 - 2*r1*r2*Math.Cos(t2-t1));
 	}
-	public static void CartesianToPolar(double x, double y, ref double radius, ref double theta){
-		radius = Math.Sqrt(x*x + y*y);
-		theta = Math.Atan(y/x);
-		if (x<0) {
-			theta += Math.PI;
-		}else if (y < 0) {
-			theta += 2*Math.PI;
-		}
+	public static (double radius, double theta) CartesianToPolar(double x, double y) {
+		double radius = Math.Sqrt(x*x + y*y);
+		double theta = Math.Atan(y/x);
+		if (x < 0) {theta += Math.PI;}
+		else if (y < 0) {theta += 2*Math.PI;}
+		return (radius, theta);
 	}
-	public static void PolarToCartesian(double radius, double theta, ref double x, ref double y){
-		x = radius * Math.Cos(theta);
-		y = radius * Math.Sin(theta);
+	public static (double x, double y) PolarToCartesian(double radius, double theta){
+		double x = radius * Math.Cos(theta);
+		double y = radius * Math.Sin(theta);
+		return (x,y);
 	}
 	public static T GetRandomWeighted<T>(Dictionary<T, double> weights) {
 		var totalWeights = new Dictionary<T, double>();
@@ -83,7 +90,7 @@ public static class Tools {
 			totalWeights.Add(weight.Key, totalWeight);
 		}
 
-		double randomTotalWeight = Globals.random.NextDouble() * totalWeight;
+		double randomTotalWeight = Globals.simulationRandom.NextDouble() * totalWeight;
 		foreach (var weight in totalWeights) {
 			if (weight.Value >= randomTotalWeight) {
 				return weight.Key;
@@ -101,7 +108,7 @@ public static class Tools {
 			totalWeights.Add(weight.Key, totalWeight);
 		}
 
-		int randomTotalWeight = (int)(Globals.random.NextDouble() * (double)totalWeight);
+		int randomTotalWeight = (int)(Globals.simulationRandom.NextDouble() * (double)totalWeight);
 		foreach (var weight in totalWeights) {
 			if (weight.Value >= randomTotalWeight) {
 				return weight.Key;
@@ -115,7 +122,7 @@ public static class Tools {
 	public static int RollDice(int quantity, int sides) {
 		int total = 0;
 		for (int i = 0; i < quantity; i++) {
-			total += Globals.random.Next(1, sides + 1);
+			total += Globals.simulationRandom.Next(1, sides + 1);
 		}
 		return total;
 	}
@@ -215,7 +222,7 @@ public class GaussP : Probability {
 			// extreme filter with >97% reject rate
 			if (filterMax != max) max = Math.Min(max, (double)filterMax);
 			min = Math.Max(min, (double)filterMin);
-			result = min + range * Globals.random.NextDouble();
+			result = min + range * Globals.simulationRandom.NextDouble();
 			//GD.Print("Filter override {0}, {1:n2}, {2:n2}, {3:n2}, {4:n2}", result, min, med, max, stDev);
 			return result;
 		}
@@ -223,7 +230,7 @@ public class GaussP : Probability {
 			// extreme filter with >97% reject rate
 			max = Math.Min(max, (double)filterMax);
 			if (filterMin != min) min = Math.Max(min, (double)filterMin);
-			result = min + range * Globals.random.NextDouble();
+			result = min + range * Globals.simulationRandom.NextDouble();
 			//GD.Print("Filter override {0}, {1:n2}, {2:n2}, {3:n2}, {4:n2}", result, min, med, max, stDev);
 			return result;
 		}
@@ -235,8 +242,8 @@ public class GaussP : Probability {
 	}
 	
 	protected double NextGaussian() {
-		double u1 = Globals.random.NextDouble() * (1 - truncateExponent) + truncateExponent;
-		double u2 = Globals.random.NextDouble();
+		double u1 = Globals.simulationRandom.NextDouble() * (1 - truncateExponent) + truncateExponent;
+		double u2 = Globals.simulationRandom.NextDouble();
 		double result = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
 		result = 0.5 + normDev * result;
 		if (double.IsNaN(result)) {
@@ -250,7 +257,7 @@ public class UniformP : Probability {
 	public UniformP(double min, double med, double max) : base(min, med, max) { }
 
 	public override double NextDouble() {
-		return ShiftResult(Globals.random.NextDouble());
+		return ShiftResult(Globals.simulationRandom.NextDouble());
 	}
 }
 public class DiscreteP : Probability {
@@ -258,7 +265,7 @@ public class DiscreteP : Probability {
 	public DiscreteP(Dictionary<double, int> odds, double med = 0.5) : base(0, med, 1) { this.odds = odds; }
 
 	public override double NextDouble() {
-		double result = min + range * Globals.random.NextDouble();
+		double result = min + range * Globals.simulationRandom.NextDouble();
 		if (shifted) result = ShiftResult(result);
 		foreach (var pair in odds) {
 			if (result <= pair.Key) return pair.Value;

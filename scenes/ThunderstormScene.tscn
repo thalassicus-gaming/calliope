@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://gq7w6a0ju1y8"]
+
+[ext_resource type="Texture2D" uid="uid://d3ro56e30emjd" path="res://ui/VioletDoor.png" id="1_3uc43"]
+[ext_resource type="Script" uid="uid://d4lhtb0werqbv" path="res://scenes/Nightlife.cs" id="1_62ggh"]
+[ext_resource type="Texture2D" uid="uid://c1mbtm2oe8owc" path="res://ui/2amTonySkeor.png" id="3_62ggh"]
+
+[node name="ThunderstormScene" type="Control" unique_id=1905974912 node_paths=PackedStringArray("outputLabel", "buttonGrid")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_62ggh")
+outputLabel = NodePath("Layout/TopArea/ScenePanel/RichTextLabel")
+buttonGrid = NodePath("Layout/ButtonGrid")
+
+[node name="Layout" type="BoxContainer" parent="." unique_id=111748694]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="TopArea" type="BoxContainer" parent="Layout" unique_id=1258428581]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PortraitPanel" type="Panel" parent="Layout/TopArea" unique_id=1059402814]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Layout/TopArea/PortraitPanel" unique_id=410281986]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3uc43")
+stretch_mode = 6
+
+[node name="ScenePanel" type="Panel" parent="Layout/TopArea" unique_id=1973581841]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="Layout/TopArea/ScenePanel" unique_id=451548961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_62ggh")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Layout/TopArea/ScenePanel" unique_id=71600807]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = -18.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/normal_font_size = 30
+scroll_following = true
+tab_size = 2
+vertical_alignment = 2
+selection_enabled = true
+
+[node name="ButtonGrid" type="GridContainer" parent="Layout" unique_id=1779544589]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+columns = 6
+
+[node name="Button_0" type="Button" parent="Layout/ButtonGrid" unique_id=179317084]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "Button 1"
+
+[node name="Button_1" type="Button" parent="Layout/ButtonGrid" unique_id=840736323]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+
+[node name="Button_2" type="Button" parent="Layout/ButtonGrid" unique_id=1036334260]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+
+[node name="Button_3" type="Button" parent="Layout/ButtonGrid" unique_id=1224548550]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+
+[node name="Button_4" type="Button" parent="Layout/ButtonGrid" unique_id=246811000]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+
+[node name="Button_5" type="Button" parent="Layout/ButtonGrid" unique_id=1358179288]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
